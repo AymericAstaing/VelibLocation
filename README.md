@@ -10,7 +10,7 @@ Objectif du projet: Visualisation de bornes Vélib se trouvant aux alentours d'u
 
 Project objective: Visualization of Velib (Parisian public bikes) stations located around a given position (address entry / geolocation). Implementation of an MVC architecture with the following technical stack:
 
-BACK => Python Flask
-FRONT => React Js
-SERVER => Aws
+* BACK => Python Flask
+* FRONT => React Js
+* SERVER => Aws
 
