@@ -4,11 +4,17 @@ import { useAuth0 } from "@auth0/auth0-react";
 import styled from 'styled-components';
 
 const Styles = styled.div`
-  .navbar { background-color: #222; }
+  .navbar { background-color: #121418; }
   a, .navbar-nav, .navbar-light .nav-link {
     color: #9FFFCB;
     &:hover { color: white; }
   }
+
+  a, .navbar-text {
+    color: #9FFFCB;
+    user-select: none;
+  }
+
   .navbar-brand {
     font-size: 1.4em;
     color: #9FFFCB;
@@ -28,11 +34,8 @@ const NavigationBar = () => {
   return (
   <Styles>
     <Navbar expand="lg">
-      <Navbar.Brand href="/">Velib location</Navbar.Brand>
+      <Navbar.Text>Velib location</Navbar.Text>
       <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-      <Form className="form-center">
-        <FormControl type="text" placeholder="Find velibs arround with location..." className="" />
-      </Form>
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
           <Nav.Item><Nav.Link href="/">About</Nav.Link></Nav.Item> 
