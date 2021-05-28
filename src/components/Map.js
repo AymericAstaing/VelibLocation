@@ -56,7 +56,6 @@ function Map() {
         mapStyle="mapbox://styles/mapbox/streets-v11"
         onViewportChange={handleViewportChange}
         mapboxApiAccessToken={MAPBOX_TOKEN}
-        viewState={viewport}
       >
         <Geocoder
           mapRef={mapRef}
@@ -65,7 +64,7 @@ function Map() {
           mapboxApiAccessToken={MAPBOX_TOKEN}
           position="top-left"
         />
-        <DeckGL {...viewport} layers={[searchResultLayer]} viewState={viewport}/>
+        <DeckGL {...viewport} layers={[searchResultLayer]}/>
       </MapGL>
     </div>
   );
