@@ -4,6 +4,7 @@ import React, { useState, useRef } from "react";
 import MapGL from "react-map-gl";
 import DeckGL, { GeoJsonLayer } from "deck.gl";
 import Geocoder from "react-map-gl-geocoder";
+import MapboxWorker from 'mapbox-gl/dist/mapbox-gl-csp-worker';
 
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN
 
@@ -45,6 +46,7 @@ function Map() {
   };
 
   console.log(viewport);
+  MapGL.workerClass = MapboxWorker;
 
   return (
     <div style={{ height: "100vh" }}>
