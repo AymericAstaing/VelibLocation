@@ -7,7 +7,6 @@ frontend:
     build:
       commands:
         - yarn run build
-        - yarn start-api
   artifacts:
     baseDirectory: build
     files:
