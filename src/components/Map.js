@@ -13,6 +13,7 @@ function Map() {
     longitude: 2.3461731519849285,
     zoom: 11.5
   });
+
   const [searchResultLayer, setSearchResultsLayer] = useState(null);
   const mapRef = useRef();
 
@@ -55,6 +56,7 @@ function Map() {
         mapStyle="mapbox://styles/mapbox/streets-v11"
         onViewportChange={handleViewportChange}
         mapboxApiAccessToken={MAPBOX_TOKEN}
+        viewState={viewport}
       >
         <Geocoder
           mapRef={mapRef}
