@@ -1,19 +1,22 @@
 import "mapbox-gl/dist/mapbox-gl.css";
+import './../App.css';
 import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import React, { useState, useRef } from "react";
-import MapGL from "react-map-gl";
+import MapGL, { Marker } from "react-map-gl";
 import DeckGL, { GeoJsonLayer } from "deck.gl";
 import Geocoder from "react-map-gl-geocoder";
 
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN
 
 function Map() {
+
   const [viewport, setViewport] = useState({
     latitude: 48.855715146561884,
     longitude: 2.3461731519849285,
     zoom: 11.5
   });
 
+  let [markerChanged, setMarkerChanged] = useState(true);
   const [searchResultLayer, setSearchResultsLayer] = useState(null);
   const mapRef = useRef();
 
@@ -30,8 +33,33 @@ function Map() {
     });
   };
 
+  React.useEffect(() => {
+    console.log("ICI")
+    return (
+      <Marker className="marker" longitude={2.343119920702086} latitude={48.89965188971135}>
+        <div>Csqsqss</div>
+      </Marker>
+    );
+  }, [markerChanged]);
+
+  let loadMarkers = (coordinates) => {
+    console.log(coordinates)
+    fetch(`http://127.0.0.1:5000/getVelibArround?location=${coordinates}`)
+    .then(res => res.json())
+    .then((result) => {
+      console.log(result)
+      return (
+        <Marker className="marker" longitude={2.343119920702086} latitude={48.89965188971135}>
+          <div>Csqsqss</div>
+        </Marker>
+      );
+    })
+    .catch(console.log)
+  }
+
   const handleOnResult = event => {
-    console.log(event.result);
+    loadMarkers(event.result.geometry.coordinates)
+  
     setSearchResultsLayer(
       new GeoJsonLayer({
         id: "search-result",
@@ -44,8 +72,6 @@ function Map() {
     );
   };
 
-  console.log(viewport);
-
   return (
     <div style={{ height: "100vh" }}>
       <MapGL
@@ -57,6 +83,8 @@ function Map() {
         onViewportChange={handleViewportChange}
         mapboxApiAccessToken={MAPBOX_TOKEN}
       >
+        <Marker className="marker" longitude={2.3619490275102644} latitude={48.899218133245135}>
+        </Marker>
         <Geocoder
           mapRef={mapRef}
           onResult={handleOnResult}
